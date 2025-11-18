@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='colin',
     maintainer_email='colin.fuelberth@icloud.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='A ROS 2 Package to monitor and publish CPU and GPU temperatures',
+    license='MIT License',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
