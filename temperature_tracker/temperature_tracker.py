@@ -1,8 +1,10 @@
+import GPUtil
+from os.path import exists
+
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Temperature
-from os.path import exists
-import GPUtil
+
 
 class TemperatureTracker(Node):
     def __init__(self):
