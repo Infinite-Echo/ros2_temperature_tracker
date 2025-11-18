@@ -1,7 +1,7 @@
 # ros2_temperature_tracker
-ROS 2 Package to monitor and publish CPU and GPU temperatures
+ROS 2 Package to monitor and publish **CPU** and **GPU** temperatures
 
-## Build
+## **Build**
 1. **Download** the repository:
 
 ```bash
@@ -20,7 +20,7 @@ cd ros2_temperature_tracker
 bash scripts/1_build_docker_image.bash
 ```
 
-## Run
+## **Run**
 
 **Run** docker container of `ros2_temperature_tracker`:
 
@@ -28,7 +28,7 @@ bash scripts/1_build_docker_image.bash
 bash scripts/2_run_docker_container.bash
 ```
 
-## Verify 
+## **Verify** 
 
 By running the aforementioned command, you should see a similar terminal output when you run the command below:
 
@@ -55,7 +55,7 @@ variance: 0.0
 ---
 ```
 
-## Parameters
+## **Parameters**
 ### publish_gpu_temperature
 Enables GPU temperature publishing. 
 
@@ -66,11 +66,11 @@ Enables GPU temperature publishing.
 ### publish_cpu_temperature
 Enables CPU temperature publishing.
 
->Note: This works by reading directly from thermal files in the system. It has only been tested on Ubuntu 20.04.
+>Note: This works by reading directly from thermal files in the system. It has been tested on Ubuntu `20.04` and `24.04`.
 
 
 ### cpu_type_id
-The string value found in /sys/class/thermal/thermal_zone*/type
+The string value found in `/sys/class/thermal/thermal_zone*/type`:
 
 >Note: Usually "x86_pkg_temp" represents the CPU. This may be different depending on CPU architecture.
 
