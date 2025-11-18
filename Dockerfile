@@ -14,7 +14,6 @@ RUN pip3 install --no-cache-dir GPUtil --break-system-packages
 WORKDIR /temperature_tracker_ws/src
 
 # Fetch repo
-# RUN git clone https://github.com/cardboardcode/ros2_temperature_tracker.git
 RUN mkdir ros2_temperature_tracker 
 COPY ./ ./ros2_temperature_tracker
 
