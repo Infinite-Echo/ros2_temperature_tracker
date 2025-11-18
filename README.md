@@ -1,6 +1,60 @@
 # ros2_temperature_tracker
 ROS 2 Package to monitor and publish CPU and GPU temperatures
 
+## Build
+1. **Download** the repository:
+
+```bash
+git clone https://github.com/cardboardcode/ros2_temperature_tracker.git --depth 1 --single-branch
+```
+
+2. **Navigate** into the project root:
+
+```bash
+cd ros2_temperature_tracker
+```
+
+3. **Build** docker image of `ros2_temperature_tracker`:
+
+```bash
+bash scripts/1_build_docker_image.bash
+```
+
+## Run
+
+**Run** docker container of `ros2_temperature_tracker`:
+
+```bash
+bash scripts/2_run_docker_container.bash
+```
+
+## Verify 
+
+By running the aforementioned command, you should see a similar terminal output when you run the command below:
+
+```bash
+docker exec -it ros2_temperature_tracker_c bash -c "source /temperature_tracker_ws/install/setup.bash && ros2 topic echo /cpu_temperature"
+```
+
+```bash
+header:
+  stamp:
+    sec: 0
+    nanosec: 0
+  frame_id: CPU
+temperature: 47.0
+variance: 0.0
+---
+header:
+  stamp:
+    sec: 0
+    nanosec: 0
+  frame_id: CPU
+temperature: 48.0
+variance: 0.0
+---
+```
+
 ## Parameters
 ### publish_gpu_temperature
 Enables GPU temperature publishing. 
