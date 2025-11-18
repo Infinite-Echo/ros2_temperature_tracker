@@ -88,3 +88,5 @@ The string value representing the desired output topic name for the CPU temperat
 ### publish_rate
 
 Time in seconds for the temperatures to be published
+
+>Note: This must be a double value. Using a value without a decimal in the params file will result in an error (i.e., '1' should be '1.0').

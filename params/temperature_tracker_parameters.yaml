@@ -5,4 +5,4 @@ temperature_tracker:
     cpu_type_id: "x86_pkg_temp" #dependent on CPU architecture, see readme
     gpu_output_topic: "gpu_temperature"
     cpu_output_topic: "cpu_temperature"
-    publish_rate: 1   #publish rate in seconds
+    publish_rate: 1.0   #publish rate in seconds
