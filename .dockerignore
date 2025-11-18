@@ -1,2 +1,3 @@
 Dockerfile
 scripts/*
+params/temperature_tracker_parameters.yaml
