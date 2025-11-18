@@ -3,9 +3,9 @@
 <package format="3">
   <name>temperature_tracker</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>A ROS 2 Package to monitor and publish CPU and GPU temperatures</description>
   <maintainer email="colin.fuelberth@icloud.com">colin</maintainer>
-  <license>Apache 2.0</license>
+  <license>MIT License</license>
 
   <depend>rclpy</depend>
   <depend>sensor_msgs</depend>
