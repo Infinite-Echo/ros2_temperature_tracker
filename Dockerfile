@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     git \
     python3-pip \
     python3-colcon-common-extensions \
+    ros-jazzy-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python deps used by temperature tracker
