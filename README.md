@@ -5,7 +5,7 @@ ROS 2 Package to monitor and publish **CPU** and **GPU** temperatures
 1. **Download** the repository:
 
 ```bash
-git clone https://github.com/cardboardcode/ros2_temperature_tracker.git --depth 1 --single-branch
+git clone https://github.com/Infinite-Echo/ros2_temperature_tracker.git --depth 1 --single-branch
 ```
 
 2. **Navigate** into the project root:
