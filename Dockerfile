@@ -1,13 +1,17 @@
 FROM ros:jazzy
 
-# Install build tools
+# Install build tools + pip
 RUN apt-get update && apt-get install -y \
     git \
+    python3-pip \
     python3-colcon-common-extensions \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Python deps used by temperature tracker
+RUN pip3 install --no-cache-dir GPUtil --break-system-packages
+
 # Create workspace
-WORKDIR /ros2_ws/src
+WORKDIR /temperature_tracker_ws/src
 
 # Fetch repo
 # RUN git clone https://github.com/cardboardcode/ros2_temperature_tracker.git
@@ -15,13 +19,13 @@ RUN mkdir ros2_temperature_tracker
 COPY ./ ./ros2_temperature_tracker
 
 # Install rosdep dependencies
-WORKDIR /ros2_ws
+WORKDIR /temperature_tracker_ws
 RUN apt-get update && rosdep update && rosdep install --from-paths src -i -y
 
 # Build
 RUN . /opt/ros/jazzy/setup.sh && colcon build --symlink-install
 
 # Source workspace on container entry
-RUN echo "source /ros2_ws/install/setup.bash" >> /root/.bashrc
+RUN echo "source /temperature_tracker_ws/install/setup.bash" >> /root/.bashrc
 
 CMD ["/bin/bash"]
