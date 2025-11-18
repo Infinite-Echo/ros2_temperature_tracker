@@ -4,6 +4,7 @@ PARAM_FILE="/temperature_tracker_ws/temperature_tracker_parameters.yaml"
 
 docker run -it --rm \
   --privileged \
+  --gpus all \
   --name ros2_temperature_tracker_c \
   -v /sys/class/thermal:/sys/class/thermal:ro \
   -v /sys/devices/virtual/thermal:/sys/devices/virtual/thermal:ro \
