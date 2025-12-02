@@ -24,9 +24,18 @@ bash scripts/1_build_docker_image.bash
 
 **Run** docker container of `ros2_temperature_tracker`:
 
+>Note: The command below only runs ros2_temperature_tracker to show only CPU.
+
 ```bash
-bash scripts/2_run_docker_container.bash
+bash scripts/2_run_docker_container_cpu.bash
 ```
+
+>Note: The command below only runs ros2_temperature_tracker to show CPU and GPU.
+
+```bash
+bash scripts/3_run_docker_container_gpu.bash
+```
+
 
 ## **Verify** 
 
@@ -74,6 +83,11 @@ The string value found in `/sys/class/thermal/thermal_zone*/type`:
 
 >Note: Usually "x86_pkg_temp" represents the CPU. This may be different depending on CPU architecture.
 
+Use the command below for auto-configuration of a localised CPU core sensor.
+
+```bash
+bash scripts/5_configure_params.bash
+```
 
 ### gpu_output_topic
 
