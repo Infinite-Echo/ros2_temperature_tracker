@@ -1,0 +1,23 @@
+services:
+  ros2_temperature_tracker:
+    container_name: ros2_temperature_tracker_c
+    image: ros2_temperature_tracker:jazzy
+    privileged: true
+    restart: unless-stopped
+
+    environment:
+      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+    volumes:
+      - /sys/class/thermal:/sys/class/thermal:ro
+      - /sys/devices/virtual/thermal:/sys/devices/virtual/thermal:ro
+      - /sys/class/hwmon:/sys/class/hwmon:ro
+      - ../params/temperature_tracker_parameters.yaml:/temperature_tracker_ws/temperature_tracker_parameters.yaml
+
+    command: >
+      bash -c "
+      source /temperature_tracker_ws/install/setup.bash &&
+      ros2 run temperature_tracker temperature_tracker
+      --ros-args --params-file /temperature_tracker_ws/temperature_tracker_parameters.yaml
+      "
+
