@@ -14,6 +14,7 @@ class TemperatureTracker(Node):
         self.init_vars()
         self.init_publishers()
         self.timer = self.create_timer(self.publish_rate, self.publish_temperatures)
+        self.get_logger().info("[ temperature_tracker ] - [RUNNING]")
 
     def init_parameters(self):
         self.declare_params()
@@ -46,11 +47,13 @@ class TemperatureTracker(Node):
         if self.publish_cpu_temperature:
             self.cpu_output_topic = self.get_parameter("cpu_output_topic").get_parameter_value().string_value
             self.cpu_publisher = self.create_publisher(Temperature, self.cpu_output_topic, 10)
+            self.get_logger().info(f"Publishing CPU temperature on topic: [ {self.cpu_output_topic} ]...")
         if self.publish_gpu_temperature and (len(self.GPUs) > 0):
             self.gpu_publishers = []
             for i in range(len(self.GPUs)):
               gpu_output_topic = f'{self.get_parameter("gpu_output_topic").get_parameter_value().string_value}{i}'
               self.gpu_publishers.append(self.create_publisher(Temperature, gpu_output_topic, 10))
+              self.get_logger().info(f"Publishing GPU temperature on topic: [ {gpu_output_topic} ]...")
         if not self.publish_gpu_temperature and not self.publish_cpu_temperature:
             self.get_logger().warning("Not publishing CPU or GPU temperature. Is this intentional?")
 
