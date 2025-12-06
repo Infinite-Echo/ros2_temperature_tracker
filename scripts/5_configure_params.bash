@@ -2,8 +2,7 @@
 
 YAML_FILE="./params/temperature_tracker_parameters.yaml"
 
-echo "=== Detecting Thermal Sensors (/sys/class/thermal/) ==="
-echo
+echo -e "=== Detecting Thermal Sensors (/sys/class/thermal/) ===\n"
 
 # List all thermal zone names
 SENSORS=()
@@ -28,12 +27,10 @@ fi
 
 SELECTED_SENSOR="${SENSORS[$((SELECTION-1))]}"
 
-echo "You selected: $SELECTED_SENSOR"
-echo
+echo -e "You selected: $SELECTED_SENSOR\n"
 
 # Replace the cpu_type_id line in YAML
-echo "Updating YAML file: $YAML_FILE"
-echo
+echo -e "Updating YAML file: $YAML_FILE\n"
 
 # Use sed to replace this line:
 # cpu_type_id: "x86_pkg_temp"
