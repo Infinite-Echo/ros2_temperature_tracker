@@ -83,7 +83,7 @@ The string value found in `/sys/class/thermal/thermal_zone*/type`:
 
 >Note: Usually "x86_pkg_temp" represents the CPU. This may be different depending on CPU architecture.
 
-Use the command below for auto-configuration of a localised CPU core sensor.
+Use the command below for auto-configuration of a localized CPU core sensor.
 
 ```bash
 bash scripts/5_configure_params.bash
