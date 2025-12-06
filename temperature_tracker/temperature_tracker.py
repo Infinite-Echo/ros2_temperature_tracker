@@ -14,7 +14,7 @@ class TemperatureTracker(Node):
         self.init_vars()
         self.init_publishers()
         self.timer = self.create_timer(self.publish_rate, self.publish_temperatures)
-        self.get_logger().info("[ temperature_tracker ] - [RUNNING]")
+        self.get_logger().info('Temperature Tracker Initialized Successfully')
 
     def init_parameters(self):
         self.declare_params()
@@ -44,16 +44,18 @@ class TemperatureTracker(Node):
                                                               description="ROS2 topic to publish CPU temperature"))
 
     def init_publishers(self):
-        if self.publish_cpu_temperature:
+        if self.publish_cpu_temperature and (self.cpu_zone != -1):
             self.cpu_output_topic = self.get_parameter("cpu_output_topic").get_parameter_value().string_value
             self.cpu_publisher = self.create_publisher(Temperature, self.cpu_output_topic, 10)
-            self.get_logger().info(f"Publishing CPU temperature on topic: [ {self.cpu_output_topic} ]...")
+            self.get_logger().info(f'Publishing CPU temperature on topic: "{self.cpu_output_topic}"')
+
         if self.publish_gpu_temperature and (len(self.GPUs) > 0):
             self.gpu_publishers = []
             for i in range(len(self.GPUs)):
               gpu_output_topic = f'{self.get_parameter("gpu_output_topic").get_parameter_value().string_value}{i}'
               self.gpu_publishers.append(self.create_publisher(Temperature, gpu_output_topic, 10))
-              self.get_logger().info(f"Publishing GPU temperature on topic: [ {gpu_output_topic} ]...")
+              self.get_logger().info(f'Publishing {self.GPUs[i].name} GPU temperature on topic: "{gpu_output_topic}"')
+
         if not self.publish_gpu_temperature and not self.publish_cpu_temperature:
             self.get_logger().warning("Not publishing CPU or GPU temperature. Is this intentional?")
 
@@ -90,7 +92,7 @@ class TemperatureTracker(Node):
             temperature_file.close()
             return float(temperature/1000.0)
 
-    def get_gpu_temperature(self, gpu):
+    def get_gpu_temperature(self, gpu: GPUtil.GPU):
         return gpu.temperature
 
     def publish_temperatures(self):
@@ -98,6 +100,7 @@ class TemperatureTracker(Node):
             self.cpu_temp_msg.temperature = self.get_cpu_temperature()
             self.cpu_temp_msg.header.stamp = self.get_clock().now().to_msg()
             self.cpu_publisher.publish(self.cpu_temp_msg)
+
         if self.publish_gpu_temperature:
             for i in range(len(self.GPUs)):
               gpu = self.GPUs[i]
